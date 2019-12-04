@@ -1,0 +1,54 @@
+---
+- hosts: redis_box
+  gather_facts: False
+
+  vars:
+    - root_dir: "{{ playbook_dir }}"
+    - shared_dir: "{{ playbook_dir }}/../shared"
+
+
+  vars_files:
+    - ./playbook_vars.yml
+
+  pre_tasks:
+    - debug: msg="Pre tasks section"
+      tags: always
+
+    - name: ANSIBLE PYTHON | install python2 minimal if default python missing
+      raw: test -e /usr/bin/python || test -e /usr/bin/python3 || (apt -qqy update && apt install -qy python-minimal)
+      become: yes
+      tags: always
+
+    - name:  UNPRIVILEGED USERS | Get acl dependency (ansible unprivileged user operations magic)
+      apt: pkg="acl"
+      become: yes
+      tags: always
+
+    - name: gather facts
+      setup:
+      tags: always
+
+    - name: Check for common pretasks
+      local_action: stat path="{{shared_dir}}/common_pretasks.yml"
+      register: common_pretasks_exists
+      tags: always
+
+    - name: Include common pretasks
+      include_tasks: "{{shared_dir}}/common_pretasks.yml"
+      when: common_pretasks_exists.stat.exists == true
+      tags: always
+
+
+  roles:
+
+      - {
+          role: "sa_redis",
+          tags: [create, redis],
+          redis_bind_to: "{{ box_redis_bind_to }}",
+          option_install_redis_commander: "{{ box_option_install_redis_commander }}",
+          option_install_using_chris_lea_ppa: "{{ box_option_install_using_chris_lea_ppa }}",
+        }
+
+  tasks:
+
+    - debug: msg="Pre tasks section"

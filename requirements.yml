@@ -1,0 +1,2 @@
+- src: softasap.sa-redis
+  name: sa_redis

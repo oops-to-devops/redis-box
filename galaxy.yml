@@ -1,0 +1,17 @@
+namespace: "softasap"
+name: "redis_box"
+description: wraps sa-redis and installs redis server
+version: 0.0.1
+readme: "Readme.md"
+authors:
+    - "Vyacheslav Voronenko"
+dependencies:
+license:
+    - "MIT"
+tags:
+    - softasap
+    - redis
+repository: "https://github.com/oops-to-devops/redis_box"
+documentation: "https://github.com/oops-to-devops/mariadb_box/blob/master/README.md"
+homepage: "https://www.softasap.com"
+issues: "https://github.com/orgs/oops-to-devops/projects/1"

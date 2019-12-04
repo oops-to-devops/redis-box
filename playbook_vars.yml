@@ -1,0 +1,3 @@
+box_redis_bind_to: 127.0.0.1
+box_option_install_redis_commander: false
+box_option_install_using_chris_lea_ppa: false

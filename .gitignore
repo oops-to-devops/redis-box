@@ -1,0 +1,11 @@
+vault-password-file
+initial-password-file
+sudo-password-file
+*.retry
+.envrc
+.idea
+*/**/.terraform
+runtime_inventory
+local_*.sh
+releases
+*.tar.gz

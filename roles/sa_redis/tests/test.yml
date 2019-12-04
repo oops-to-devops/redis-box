@@ -1,0 +1,8 @@
+---
+- hosts: all
+  vars:
+
+    option_allow_remote_connections: true
+
+  roles:
+    - role_under_test
