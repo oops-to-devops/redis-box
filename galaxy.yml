@@ -1,7 +1,7 @@
 namespace: "softasap"
 name: "redis_box"
 description: wraps sa-redis and installs redis server
-version: 0.1.0
+version: 0.2.0
 readme: "Readme.md"
 authors:
     - "Vyacheslav Voronenko"
